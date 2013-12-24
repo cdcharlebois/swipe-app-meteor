@@ -199,25 +199,24 @@ Template.adminReports.rendered = function(){
     //Get the context of the canvas element we want to select
     var ctx = document.getElementById("myChart").getContext("2d"),
         data = {
-            labels:["IT 101", "CS 180", "CS 213"],
+            labels:['CS 360','CS 240','CS 460','CS 213','Other','CS 150','CS 280','IT 101','CS 180'],
             datasets:[
                 {
                     fillColor:"#ffacac",
                     strokeColor:"#ffffff",
-                    data:[1,2,3]
+                    data:[1,1,1,2,8,5,6,104,44]
                 }
             ]
         },
-        myNewChart = new Chart(ctx).Bar(data);
+        STEP_WIDTH = 10,
+        options = {
+            scaleOverride:true,
+            scaleSteps: Math.floor(Math.max.apply(Math, data.datasets[0].data) * 1.1 / STEP_WIDTH ),
+            scaleStepWidth: STEP_WIDTH,
+            scaleStartValue:0
+        },
+        myNewChart = new Chart(ctx).Bar(data, options);
 };
-
-
-
-
-
-
-
-
 
 
 
