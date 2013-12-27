@@ -198,6 +198,15 @@ Template.studentHistory.tutorSession = function(e,t) {
 Template.adminReports.rendered = function(){
     //Get the context of the canvas element we want to select
     var ctx = document.getElementById("myChart").getContext("2d"),
+        /*
+            ## to properly add data here
+            ``` these lines ```
+            data.labels = array_of_labels
+            data.datasets[0].data = array_of_values
+            ```
+            data.datasets[0].fillColor = "#color_string"
+            data.datasets[0].strokeColor = "#ffffff"
+        */
         data = {
             labels:['CS 360','CS 240','CS 460','CS 213','Other','CS 150','CS 280','IT 101','CS 180'],
             datasets:[
