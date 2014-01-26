@@ -226,6 +226,22 @@ Template.adminReports.rendered = function(){
         },
         myNewChart = new Chart(ctx).Bar(data, options);
 };
+Template.adminReports.dayWorked = function() {
+    var dayWorked   = [],   // {"day":"", "timeIn":"", "timeOut":"", "diff":""} 
+        myDays      = WorkVisits.find({timeOut:{$not:null}, timeIn:{$gt : new Date(new Date().getTime() - (14 * 24 * 60 * 60 * 1000))}}, {sort: {timeIn:-1}, limit: 10}).fetch();
+    //console.log(myDays);
+    _.each(myDays, function(e) {
+        //console.log(Meteor.users.find({_id: e.tutorId}).fetch()[0].profile.name);
+        dayWorked.push({
+            'day'       : e.timeIn.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'}),
+            'tutor'     : Meteor.users.find({_id: e.tutorId}).fetch()[0].profile.name,
+            'timeIn'    : e.timeIn.toLocaleTimeString('en-US', {hour12: true, hour:'2-digit', minute:'2-digit'}),
+            'timeOut'   : e.timeOut.toLocaleTimeString('en-US', {hour12: true, hour:'2-digit', minute:'2-digit'}),
+            'diff'      : ((e.timeOut - e.timeIn) / (1000 * 60 * 60)).toFixed(1) + ' hours'
+        });
+    });
+    return dayWorked;
+};
 
 
 
