@@ -16,6 +16,10 @@ Template.dashboard.isAdmin = Template.maindashboard.isAdmin = function() {
     return Roles.userIsInRole(Meteor.userId(), 'admin');
 };
 
+Template.dashboard.isProfessor = Template.maindashboard.isProfessor = function() {
+    return Roles.userIsInRole(Meteor.userId(), 'professor');
+}
+
 Template.dashboard.events({
     'click #logout': function() {
         Meteor.logout();

@@ -43,7 +43,9 @@
             <li><a href="#tab4" data-toggle="tab">Manage Users</a></li>
             <li><a href="#tab5" data-toggle="tab">Add User</a></li>
             <li><a href="#tab7" data-toggle="tab">Admin Reports</a></li>
-            
+            {{/if}}
+            {{#if isProfessor}}
+            <li><a href="#" data-toggle="tab">Professor Stuff</a></li>
             {{/if}}
         </ul>
         <div class="tab-content background-gray">
